@@ -1,20 +1,19 @@
 const array = [1, 4, 7, 2];
 
-const getPair = (arr, target) => {
-  let current = {};
-  for (let i = 0; i < arr.length; i++) {
-    const currentValue = arr[i];
-    console.log(current[currentValue]);
+function twoSum(nums, target) {
+  let numObj = {};
+  for (let i = 0; i < nums.length; i++) {
+    const currentValue = nums[i];
+    const complementValue = target - currentValue;
+    const complementValueIndex = numObj[complementValue];
+    const hasComplementValueInTheMap = complementValueIndex !== undefined;
 
-    if (current[currentValue]) {
-      console.log("here");
+    if (hasComplementValueInTheMap) {
+      return [complementValueIndex, i];
     }
 
-    const difference = target - currentValue;
-    current[difference] = i;
+    numObj[currentValue] = i;
   }
+}
 
-  console.log("current", current);
-};
-
-getPair(array, 5);
+console.log(twoSum(array, 3));
